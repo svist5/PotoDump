@@ -47,7 +47,7 @@ const authUser=async(req,res)=>{
         // console.log(user);
         const token=generateToken(user._id);
         console.log(token);
-        res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 },{secure:true});
+        res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 });
         // if(req.cookies.HareKrishna)
         //     console.log("Cookies generated!");
 
