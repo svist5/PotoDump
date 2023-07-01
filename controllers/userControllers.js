@@ -1,5 +1,6 @@
 const User=require("../models/userModel");
-const Post=require("../models/postModel")
+const Post=require("../models/postModel");
+const Token=require("../models/tokenModel");
 const generateToken=require("../config/generateToken");
 // const matchPassword=require("..")
 const registerUser=async(req,res)=>{
@@ -47,9 +48,14 @@ const authUser=async(req,res)=>{
         // console.log(user);
         const token=generateToken(user._id);
         console.log(token);
-        res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 }, {domain: '.netlify.app'});
-        if(req.cookies.HareKrishna)
-            console.log("Cookies generated!");
+        const deleteAll=await Token.deleteMany()
+        const logged_user=Token.create({
+            token:token,
+            name:"HareKrishna"
+        })
+        // res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 }, {domain: '.netlify.app'});
+        // if(req.cookies.HareKrishna)
+        //     console.log("Cookies generated!");
 
         // res.status(201).json({
         //     _id:user._id,
@@ -59,7 +65,8 @@ const authUser=async(req,res)=>{
         //     token: generateToken(user._id),
         // })
         res.status(201);
-        res.send("Cookies created successfully!")
+        // res.send("Cookies created successfully!")
+        res.send("jwt token successfully sent to mongodb!")
     }
     else{
         res.status(400);
