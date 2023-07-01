@@ -13,9 +13,10 @@ const Authenticate=async(req,res,next)=>{
     // const rootUser=await User.findOne({_id:verifyToken.id})
     // console.log(rootUser)
     // if(!rootUser){throw new Error("User not found!")}
-    const token=await Token.findOne({
+    const logged_user=await Token.findOne({
         name:"HareKrishna"
     })
+    const token=logged_user.token;
     const verifyToken=jwt.verify(token,"johncena");
     const rootUser=await User.findOne({_id:verifyToken.id})
     
