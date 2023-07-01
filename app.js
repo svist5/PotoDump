@@ -10,6 +10,17 @@ const bodyParser = require("body-parser");
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(
+    session({
+      secret: 'Super Secret (change it)',
+      resave: true,
+      saveUninitialized: false,
+      cookie: {
+        sameSite:'none', // must be 'none' to enable cross-site delivery
+        secure: true, // must be true if sameSite='none'
+      }
+    })
+ );
 app.use(cors({ 
     origin: 'https://photodumpp.netlify.app', // Replace with your frontend domain
     credentials: true // Enable cookies and other credentials in CORS requests
