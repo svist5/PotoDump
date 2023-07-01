@@ -10,10 +10,11 @@ const bodyParser = require("body-parser");
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors({ 
-    origin: 'https://photodumpp.netlify.app', // Replace with your frontend domain
-    credentials: true // Enable cookies and other credentials in CORS requests
-  }));
+// app.use(cors({ 
+//     origin: 'https://photodumpp.netlify.app', // Replace with your frontend domain
+//     credentials: true // Enable cookies and other credentials in CORS requests
+//   }));
+app.use(cors())
 app.use(express.json());
 app.use("/api/user",userRoutes)
 
