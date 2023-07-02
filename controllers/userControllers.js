@@ -52,6 +52,7 @@ const authUser=async(req,res)=>{
         const logged_user= await User.findOneAndUpdate({email:email},{token:token});
         
         // res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 });
+        const updated_char=await User.findOne({email:email})
         console.log(logged_user)
 
 
@@ -67,7 +68,7 @@ const authUser=async(req,res)=>{
         //     token: generateToken(user._id),
         // })
         res.status(201);
-        res.send(logged_user)
+        res.send(updated_char)
     }
     else{
         res.status(400);
