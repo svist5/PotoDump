@@ -7,6 +7,8 @@ const userRoutes=require("./Routes/userRoutes")
 const connectDB=require("./db");
 const Authenticate = require("./middlewares/auth");
 const bodyParser = require("body-parser");
+const jwt=require("jsonwebtoken");
+
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
