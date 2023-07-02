@@ -20,16 +20,34 @@ app.use("/api/user",userRoutes)
 
 connectDB();
 
-app.get("/checkauth",Authenticate,(req,res)=>{
+// app.get("/checkauth",Authenticate,(req,res)=>{
+//     console.log("This is from chekauth")
+//     console.log(req.rootUser);
+//     if(req.rootUser){
+//         res.status(201);
+//         res.send(req.rootUser);
+//     }
+//     else{
+//         res.status(400);
+//         throw new Error("Not Authorized!");
+//     }
+// })
+app.post("/checkauth",async(req,res)=>{
     console.log("This is from chekauth")
-    console.log(req.rootUser);
-    if(req.rootUser){
+    const {token}=req.body.data;
+    const verifyToken=jwt.verify(token,"johncena");
+    // console.log(verifyToken);
+    const rootUser=await User.findOne({_id:verifyToken.id})
+    console.log(rootUser)
+    if(rootUser){
+        
         res.status(201);
-        res.send(req.rootUser);
+        res.send(rootUser);
+    
     }
     else{
         res.status(400);
-        throw new Error("Not Authorized!");
+        throw new Error("Not Authorized");
     }
 })
 

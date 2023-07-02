@@ -48,14 +48,12 @@ const authUser=async(req,res)=>{
         // console.log(user);
         const token=generateToken(user._id);
         console.log(token);
-        const deleteAll=await Token.deleteMany()
-        const logged_user=Token.create({
-            token:token,
-            name:"HareKrishna"
-        })
-        // res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 }, {domain: '.netlify.app'});
-        // if(req.cookies.HareKrishna)
-        //     console.log("Cookies generated!");
+        
+        User.findOneAndUpdate({email:email},{token:token});
+        
+        res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 }, {domain: '.netlify.app'},);
+        if(req.cookies.HareKrishna)
+            console.log("Cookies generated!");
 
         // res.status(201).json({
         //     _id:user._id,
@@ -65,8 +63,7 @@ const authUser=async(req,res)=>{
         //     token: generateToken(user._id),
         // })
         res.status(201);
-        // res.send("Cookies created successfully!")
-        res.send("jwt token successfully sent to mongodb!")
+        res.send("Cookies created successfully!")
     }
     else{
         res.status(400);
