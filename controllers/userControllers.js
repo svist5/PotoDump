@@ -51,7 +51,7 @@ const authUser=async(req,res)=>{
         
         User.findOneAndUpdate({email:email},{token:token});
         
-        res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 }, {domain: '.netlify.app'},);
+        res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 });
         if(req.cookies.HareKrishna)
             console.log("Cookies generated!");
 
