@@ -8,6 +8,7 @@ const userSchema=mongoose.Schema({
     following:[{type:String}],
     dp:{type:String,default:"https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"},
     cover_photo:{type:String,default:""},
+    token:{type:String,default:undefined},
     // posts:[{
     //     type:mongoose.Schema.Types.ObjectId,
     //     ref:"Post"

@@ -63,7 +63,7 @@ const authUser=async(req,res)=>{
         //     token: generateToken(user._id),
         // })
         res.status(201);
-        res.send("Cookies created successfully!")
+        res.send(user)
     }
     else{
         res.status(400);
