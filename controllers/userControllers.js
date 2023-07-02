@@ -53,12 +53,12 @@ const authUser=async(req,res)=>{
         
         // res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 });
         const updated_char=await User.findOne({email:email})
-        console.log(logged_user)
+        console.log(updated_char)
 
 
         
-        if(req.cookies.HareKrishna)
-            console.log("Cookies generated!");
+        // if(req.cookies.HareKrishna)
+        //     console.log("Cookies generated!");
 
         // res.status(201).json({
         //     _id:user._id,
