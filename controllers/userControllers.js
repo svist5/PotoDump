@@ -49,9 +49,13 @@ const authUser=async(req,res)=>{
         const token=generateToken(user._id);
         console.log(token);
         
-        User.findOneAndUpdate({email:email},{token:token});
+        const logged_user= await User.findOneAndUpdate({email:email},{token:token});
         
-        res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 });
+        // res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 });
+        console.log(logged_user)
+
+
+        
         if(req.cookies.HareKrishna)
             console.log("Cookies generated!");
 
@@ -63,7 +67,7 @@ const authUser=async(req,res)=>{
         //     token: generateToken(user._id),
         // })
         res.status(201);
-        res.send(user)
+        res.send(logged_user)
     }
     else{
         res.status(400);
