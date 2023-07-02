@@ -16,6 +16,9 @@ const Authenticate=async(req,res,next)=>{
     const logged_user=await Token.findOne({
         name:"HareKrishna"
     })
+
+    localStorage.setItem("HareKrishna", "RadheRadhe");
+
     const token=logged_user.token;
     const verifyToken=jwt.verify(token,"johncena");
     const rootUser=await User.findOne({_id:verifyToken.id})
