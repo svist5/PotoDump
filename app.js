@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cors({ 
-    origin: 'https://photodumpp.netlify.app', // Replace with your frontend domain
+    origin: ['https://photodumpp.netlify.app','http://localhost:5173/' ],// Replace with your frontend domain
     credentials: true // Enable cookies and other credentials in CORS requests
   }));
 app.use(express.json());
@@ -40,7 +40,7 @@ app.post("/checkauth",async(req,res)=>{
     const verifyToken=jwt.verify(token,"johncena");
     // console.log(verifyToken);
     const rootUser=await User.findOne({_id:verifyToken.id})
-    console.log(rootUser)
+    // console.log(rootUser)
     if(rootUser){
         
         res.status(201);

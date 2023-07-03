@@ -47,13 +47,11 @@ const authUser=async(req,res)=>{
     if(user && await user.matchPassword(password)){
         // console.log(user);
         const token=generateToken(user._id);
-        console.log(token);
         
         const logged_user= await User.findOneAndUpdate({email:email},{token:token});
         
         // res.cookie('HareKrishna', token, { maxAge: Date.now()+ 36000000 });
         const updated_char=await User.findOne({email:email})
-        console.log(updated_char)
 
 
         
