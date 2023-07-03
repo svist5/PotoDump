@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cors({ 
     // origin: ['https://photodumpp.netlify.app','http://localhost:5173/' ],// Replace with your frontend domain
-    origin: 'http://localhost:5173/',// Replace with your frontend domain
+    origin: 'http://localhost:5173',// Replace with your frontend domain
     credentials: true // Enable cookies and other credentials in CORS requests
   }));
 app.use(express.json());
