@@ -100,4 +100,32 @@ const updateUser=async(req,res)=>{
     res.status(201);
     res.send(updated_char);
 }
-module.exports={registerUser,authUser,updateUser}
+
+const allUsers=async(req,res)=>{
+    console.log("hahah");
+    const keyword=req.body.data
+    ?
+    {
+        $or:[
+            //This is a way to filter the searched data
+            //$regex: used to filter the data properly
+            //$options:make the search case insensitive
+            {name:{$regex:req.body.data,$options:"i"}},
+            {email:{$regex:req.body.data,$options:"i"}}
+     ],
+    }:{};
+
+    const users=await User.find(keyword)
+    // the data of the found user is stored in the database;
+    if(users){
+        console.log(users);
+        res.status(201);
+        res.send(users);
+    }
+    else{
+        res.status(400);
+        throw new Error("No users found!")        
+    }
+
+}
+module.exports={registerUser,authUser,updateUser,allUsers}
