@@ -103,15 +103,16 @@ const updateUser=async(req,res)=>{
 
 const allUsers=async(req,res)=>{
     console.log("hahah");
-    const keyword=req.body.data
+    const {allUsers}=req.body.data
+    const keyword=allUsers
     ?
     {
         $or:[
             //This is a way to filter the searched data
             //$regex: used to filter the data properly
             //$options:make the search case insensitive
-            {name:{$regex:req.body.data,$options:"i"}},
-            {email:{$regex:req.body.data,$options:"i"}}
+            {name:{$regex:allUsers,$options:"i"}},
+            {email:{$regex:allUsers,$options:"i"}}
      ],
     }:{};
 
