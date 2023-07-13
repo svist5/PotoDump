@@ -54,6 +54,19 @@ app.post("/checkauth",async(req,res)=>{
     }
 })
 
+app.post("/getprofile",async(req,res)=>{
+    const {id}=req.body.data;
+    console.log(id)
+    const user=await User.findOne({_id:id});
+    if(user){
+        res.status(201);
+        res.send(user);
+    }
+    else
+        res.status(400);
+
+})
+
 app.listen(3000,(req,res)=>{
     console.log("Server is set!")
 })
